@@ -1,0 +1,303 @@
+<html>
+<head><title>VOLTAGE DIVIDER</title></head>
+<style>
+*{
+padding:0px;
+margin:0px;
+font-family:Helvetica;
+font-weight:bold;
+}
+
+.dash{
+height:30px;
+width:100%;
+padding:10px 0px 0px 50px;
+margin-bottom:30px;
+ box-shadow: 0 0 3px 3px #B6B3B3;
+
+}
+.parent{
+height:250px;
+width:100%;
+display:flex;
+
+justify-content:space-evenly;
+margin-bottom:30px;
+}
+.circuit{
+width:220px;
+height:220px;
+border-radius:20px;
+ box-shadow: 0 0 3px 3px #B6B3B3;
+padding:20px;
+}
+.input_module{
+width:500px;
+height:220px;
+ box-shadow: 0 0 3px 3px #B6B3B3;
+border-radius:20px;
+padding:20px ;
+
+}
+.formula{
+width:220px;
+height:220px;
+border-radius:20px;
+ box-shadow: 0 0 3px 3px #B6B3B3;
+ }
+.inp_part{
+width:80%;
+height:70%;
+
+display:grid;
+margin-left:20px;
+grid-template-columns:1fr 1fr 1fr;
+padding:20px;
+
+}
+img{
+margin-left:10px;
+}
+input{
+
+ box-shadow: 0 0 3px 3px #B6B3B3;
+ margin-right:30px;
+ border:transparent;
+border-radius:40px;
+height:70%;
+width:150px;
+background-color:white;
+padding-left:60px;
+}
+label{
+margin-left:40px;
+}
+select{
+padding-left:25px;
+border-radius:40px;
+width:100px;
+height:70%;
+}
+button{
+border-radius:40px;
+background-color:white;
+width:100px;
+height:70%;
+}
+h2{
+margin-left:10px;
+text-decoration-thickness: 2px;  
+}
+.but{
+background-color:black;
+color:white;
+}
+h4{
+
+margin-left:100px;
+
+color:red;
+}
+table {
+
+  border-collapse: collapse;
+  
+  text-align:center;
+
+}
+tr,th,td{
+border-bottom:2px solid rgba(0,0,0,.1);
+ table-layout:fixed;
+height:40px;
+ 
+}
+th{
+border-bottom:2px solid black;
+border-top:2px solid black;
+}
+.delbut{
+text-align:center;
+padding-right:100px;
+margin-left:10px;
+align:center;
+width:10px;
+}
+body{
+counter-reset:Serial;
+}
+tr td:first-child::before{
+counter-increment:Serial;
+content:counter(Serial);
+}
+.scroll{
+  margin-left:10px;
+width:500px;
+
+  height:210px;
+}
+.a{
+width:50px;
+padding-right:0px;
+}
+
+</style>
+
+
+<body>
+
+<h3 class="dash">Voltage Divider</h3>
+<div class="parent">
+
+<div class="circuit">
+	<h3>Circuit</h3>
+	<img src="../static/img/a.png"height="200px"width="200px">
+	</div>
+<form class="input_module"name="form">
+	<h3>Input</h3>
+	<h4 id="para"></h4>
+	<div class="inp_part">
+			
+			<div>
+				<label for="r1" >R1:</label>
+			</div>
+			<div>
+				<input type="text"vname="r1" id="r1">
+			</div>
+			<div>
+				<select name="select1" id="Select1">
+				<option value="mega">mega</option>
+				<option value="kilo">kilo</option>
+				<option value="ohms">ohms</option>
+				</select>
+			</div>
+		
+		
+		<div>
+			<label for="r2" >R2:</label>
+			</div>
+		<div>
+			<input type="text"name="r2" id="r2">
+			</div>
+			<div>
+				<select name="select2"id="Select2">
+			<option value="mega">mega</option>
+			<option value="kilo">kilo</option>
+			<option value="ohms">ohms</option>
+			</select>
+			</div>
+		
+			<div>
+			<label for="vin">Vin:</label>
+			</div>
+			<div>
+			<input type="text" name="vin" id="vin"></label>
+			</div>
+			<div>
+			<button type="submit" id="calc" onclick="calculate()">CALCULATE</button>
+			</div>
+			<div>
+			<label for="vout" >Vout:</label>
+			</div>
+			<div>
+			<input type="text"name="vout" id="vout">
+			</div>
+			<div>
+			<button type="reset"class="but">CLEAR</button>
+			</div>
+		</div>
+	</form>
+<div class="circuit">	
+<h3>Formula</h3>
+	<img src="../static/img/b.png"width="200px"height="200px" class="img2">
+	</div>
+</div>
+<div class="parent">
+	<form class="input_module"id="store_inputs">
+	<h3>Add Column</h3>
+		<div class="inp_part">
+		
+				<div>
+					<label>R1:</label>
+					</div>
+				<div>
+					<input type="text" id="R1">
+				</div>
+				<div>
+					<select name="measures"id="measures">
+					<option value="mega">mega</option>
+					<option value="kilo">kilo</option>
+					<option value="ohms">ohms</option></select>
+				</div>
+		
+				<div>
+					<label>R2:</label>
+				</div>
+				<div>
+					<input type="text"id="R2">
+				</div>
+				<div>
+					<select name="measures"id="measures">
+					<option value="mega">mega</option>
+					<option value="kilo">kilo</option>
+					<option value="ohms">ohms</option></select>
+				</div>
+	
+			
+				<div>
+					<label>Vin:</label>
+				</div>
+				<div>
+					<input type="text"id="Vin">
+				</div>
+				<div>
+					<button type="submit"onclick="submit_form()">ADD</button>
+				</div>
+	
+		
+				<div>
+					<label>Vout:</label>
+				</div>
+				<div>
+					<input type="text"id="Vout">
+				</div>
+				<div>
+					<button type="reset"class="but">CLEAR</button>
+				</div>
+		
+		</div>
+	</form>
+	<div class="input_module"><h3>Table</h3>
+	<div class="scroll"style="overflow-y:scroll">
+	<table style="width:100%;"id="datatable">
+		<thead>
+			<tr>
+				<th> S.No </th>
+				<th> R1 </th>
+				<th> R2 </th>
+				<th> Vin </th>
+				<th> Vout </th>
+				<th> Delete </th>
+			</tr>
+		</thead>
+		
+		{% for row in Result %}
+		<tr>
+			<td class="d"></td>
+			<td class="d">{{row[0]}}</td>
+			<td class="d">{{row[1]}}</td>
+			<td class="d">{{row[2]}}</td>
+			<td class="d">{{row[3]}}</td>
+			<td class="a"><input class ="delbut"type="submit" value="Delete" id="{{row[4]}}"  onclick="del(this.id)"</td>
+		</tr>
+		{% endfor %} 
+	</table>
+	</div>
+	</div>
+	</div>
+	
+	
+</div>
+<script src="../static/js/code.js"></script>
+<script src="../static/js/code2.js"></script>
+</body>
+</html>

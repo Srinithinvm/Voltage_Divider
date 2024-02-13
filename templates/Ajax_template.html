@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Ajax_Template</title>
+</head>
+<body>
+<h1>Testing Ajax...</h1>
+<div>
+<p id="ajaxtemp">This is a ajax content</p>
+</div>
+<button type="submit" onclick="Ajax_Call()" >COMMIT</button>
+
+<script>
+function Ajax_Call(){
+    console.log("hii")
+	var xhttp= new XMLHttpRequest();
+	xhttp.onreadystatechange=function(){
+	if(this.readyState==4 && this.status==200){
+	document.getElementById("ajaxtemp").innerHTML=this.responseText;
+	}
+	};
+	xhttp.open("GET","Ajax.txt",true);
+	xhttp.send();
+}
+</script>
+</body>
+</html>
